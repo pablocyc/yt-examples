@@ -1,32 +1,32 @@
-body {
-  background: rgb(178 122 213);
+@font-face {
+  font-family: "DSEG7";
+  src:
+    url("fonts/DSEG7Classic-Bold.woff2")
+    format("woff2"),
+    url("fonts/DSEG7Classic-Bold.woff")
+    format("woff"),
+    url("fonts/DSEG7Classic-Bold.ttf")
+    format("truetype");
 }
 
-.card {
-  --size: 64px;
+body {
+  background: #503d3d;
+}
 
-  display: inline-grid;
-  place-items: center;
-  grid-template-columns: var(--size) 1fr;
-  gap: 1rem;
-  border: 5px solid black;
-  border-bottom-color: slateblue;
-  border-right-color: deeppink;
-  border-radius: var(--size);
-  padding: 0.5rem 1rem;
-  margin: 0.5rem;
-  background: #fff;
+.counter {
+  --color: #e00;
+  --dark-color: color-mix(in srgb, var(--color), black 85%);
 
-  & img {
-    width: var(--size);
-    height: var(--size);
-    border-radius: 50%;
-  }
+  font-family: "DSEG7", monospace;
+  font-size: 4rem;
+  color: var(--color);
+  display: flex;
+  position: relative;
+}
 
-  & span {
-    font-family: Jost, sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: black;
-  }
+.digits::before {
+  content: "888888";
+  color: var(--dark-color);
+  position: absolute;
+  z-index: -1;
 }
