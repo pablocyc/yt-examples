@@ -1,32 +1,26 @@
-@font-face {
-  font-family: "DSEG7";
-  src:
-    url("fonts/DSEG7Classic-Bold.woff2")
-    format("woff2"),
-    url("fonts/DSEG7Classic-Bold.woff")
-    format("woff"),
-    url("fonts/DSEG7Classic-Bold.ttf")
-    format("truetype");
-}
-
 body {
-  background: #503d3d;
+  background: #171717;
 }
 
-.counter {
-  --color: #e00;
-  --dark-color: color-mix(in srgb, var(--color), black 85%);
-
-  font-family: "DSEG7", monospace;
-  font-size: 4rem;
-  color: var(--color);
-  display: flex;
-  position: relative;
+.container {
+  background-image: linear-gradient(#051327, #000);
+  position: fixed;
+  inset: 0;
 }
 
-.digits::before {
-  content: "888888";
-  color: var(--dark-color);
+.space {
+  width: var(--size);
+  height: var(--size);
+  background-color: #fff;
+  box-shadow: var(--space-layer);
   position: absolute;
-  z-index: -1;
+  top: 0;
+  left: 0;
+  opacity: 75%;
+  animation: move-stars var(--duration, 20s) linear infinite;
+}
+
+@keyframes move-stars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100vh); }
 }

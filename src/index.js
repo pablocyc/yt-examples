@@ -1,30 +1,21 @@
-const COLORS = ["#e00", "#0e0", "#00e", "#ee0", "#0ee"];
+const COLORS = ["#fff2", "#fff4", "#fff7", "#fffc"];
 
-const counter = document.querySelector(".counter");
-const digits = document.querySelector(".digits");
-let count = 0;
-let currentTheme = 0;
+const generateSpaceLayer = (size, selector, totalStars, duration) => {
+  const layer = [];
 
-const updateCounter = () => {
-  digits.textContent = count.toString().padStart(6, "0");
-};
+  for (let i=0; i<totalStars; i++) {
+    const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    const x = Math.floor(Math.random() * 100);
+    const y = Math.floor(Math.random() * 100);
+    layer.push(`${x}vw ${y}vh 0 ${color}, ${x}vw ${y + 100}vh 0 ${color}`);
+  }
 
-const incrementCounter = () => {
-  count++;
-  updateCounter();
-};
-
-const resetCounter = (ev) => {
-  ev.preventDefault();
-  count = 0;
-  updateCounter();
-};
-
-const changeTheme = () => {
-  currentTheme = (currentTheme + 1) % COLORS.length;
-  counter.style.setProperty("--color", COLORS[currentTheme]);
+  const container = document.querySelector(selector);
+  container.style.setProperty("--space-layer", layer.join(","));
+  container.style.setProperty("--size", size);
+  container.style.setProperty("--duration", duration);
 }
 
-document.addEventListener("pointermove", incrementCounter);
-document.addEventListener("contextmenu", resetCounter);
-document.addEventListener("click", changeTheme);
+generateSpaceLayer("1px", ".space-1", 200, "25s");
+generateSpaceLayer("2px", ".space-2", 100, "20s");
+generateSpaceLayer("4px", ".space-3", 25, "15s");
